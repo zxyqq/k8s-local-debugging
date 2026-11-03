@@ -11,7 +11,7 @@ async def handleRoot(request):
 
 
 async def handle(request):
-    logging.warning("<---- Hello API")
+    logging.warning("<---- Hello API -- local ")
     name = request.match_info.get("name", "Anonymous")
     text = await callExternalApi()
     return web.Response(text=f"Hello, {name}! External API Response: {text}")

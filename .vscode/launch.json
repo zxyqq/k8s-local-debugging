@@ -14,6 +14,7 @@
       "request": "launch",
       "program": "python-app/app.py",
       "console": "integratedTerminal",
+      "python":"/home/yd/.local/venv/k8s/bin/python3",
       "justMyCode": true
     },
     {

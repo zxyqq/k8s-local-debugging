@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -73,7 +74,16 @@ func main() {
 				log.Printf("Error making GET request to helloServiceUrl %v\n", err)
 			} else {
 				defer resp.Body.Close()
-				log.Printf("GET request to helloServiceUrl %s", resp.Status)
+				bodyBytes, err := io.ReadAll(resp.Body)
+
+				if err != nil {
+					log.Printf("Error reading response body: %v\n", err)
+				} else {
+					// Convert the byte slice to a string and print it
+					bodyString := string(bodyBytes)
+					log.Printf("GET request to helloServiceUrl %s, response body: %s", resp.Status, bodyString)
+				}
+				// log.Printf("GET request to helloServiceUrl %s", resp.Status)
 			}
 		}
 	}
